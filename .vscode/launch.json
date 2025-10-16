@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-CouponApplication<review>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "schwarz.jobs.interview.coupon.CouponApplication",
+            "projectName": "review",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

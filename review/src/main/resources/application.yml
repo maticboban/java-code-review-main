@@ -1,0 +1,68 @@
+spring:
+
+    datasource:
+        url: jdbc:h2:mem:testdb
+        driverClassName: org.h2.Driver
+        username: sa
+        password: password
+    h2:
+        console:
+            enabled: true
+            path: /h2-console
+    sql:
+        init:
+            mode: always   
+    jpa:
+        defer-datasource-initialization: true 
+        hibernate:
+            naming:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl  
+                implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl 
+    main:
+        web-application-type: reactive
+
+
+#####################
+## Spring Doc Swagger - OpenAPI 3
+#####################
+springdoc:
+  api-docs:
+    title: Coupon API
+    description: Coupon Management System
+    version: OPENAPI_3_1
+    path: /api-docs
+    enabled: true
+  swagger-ui:
+    version: 
+    path: /swagger-ui.html
+    enabled: true
+    config-url: /api-docs/swagger-config
+    url: /api-docs
+    tryItOutEnabled: true
+  packages-to-scan: schwarz.jobs.interview.coupon.controller
+  paths-to-match: /v1, /**
+  show-actuator: true
+  model-and-view-allowed: true
+  show-login-endpoint: true
+  writer-with-order-by-keys: true
+  webflux-ui:
+     enabled: true
+
+logging:
+    level:
+       com.example: DEBUG
+       #org.springframework.security: DEBUG
+       org.springframework.web: DEBUG
+       guru.springframework.controllers: DEBUG
+       org.hibernate: DEBUG
+       org: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,env
+      base-path: /actuator
+
+app: 
+  serviceUrl: http://localhost:8080/coupon/ 

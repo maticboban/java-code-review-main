@@ -1,0 +1,27 @@
+// DOC https://learn.microsoft.com/en-us/aspnet/core/test/http-files?view=aspnetcore-9.0
+GET http://localhost:8080/api-docs
+Accept: application/json
+
+###
+GET http://localhost:8080/api-docs/swagger-config
+Accept: application/json
+
+###
+GET http://localhost:8080/swagger-ui.html
+Accept: application/json
+
+###
+GET http://localhost:8080/actuator/health
+Accept: application/json
+
+###
+GET http://localhost:8080/actuator/info
+Accept: application/json
+
+###
+GET http://localhost:8080/actuator/metrics
+Accept: application/json
+
+###
+GET http://localhost:8080/actuator/env
+Accept: application/json

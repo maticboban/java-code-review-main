@@ -1,0 +1,86 @@
+plugins {
+    id 'org.springframework.boot' version '3.5.6'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'java'
+}
+
+group = 'schwarz.jobs.interview'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+    //jcenter()
+}
+
+dependencies {
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    //JSON API documentation for spring based applications
+    //set up SpringDoc OpenAPI (the modern replacement for SpringFox) for Spring WebFlux. 
+    //SpringFox has been largely deprecated in favor of SpringDoc.
+    //implementation "io.springfox:springfox-boot-starter:${swaggerVersion}"
+    //implementation "io.springfox:springfox-spring-webflux:${swaggerVersion}"
+    // SpringDoc OpenAPI for WebFlux
+    implementation 'org.springdoc:springdoc-openapi-starter-webflux-ui:2.8.13'
+    // Optional: If you want to generate OpenAPI from annotations
+    implementation 'org.springdoc:springdoc-openapi-starter-common:2.8.13'
+
+    //ADDED
+    //used for declarative validation of Java objects, primarily in web applications. 
+    //It provides a standardized way to validate input data using annotations.
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    //used for production-ready features that help you monitor and manage your application in production environments. 
+    //It provides several built-in endpoints that give you insight into your application's health, metrics, configuration, and more
+    implementation('org.springframework.boot:spring-boot-starter-actuator')
+    
+    //ADDED
+    implementation 'org.mapstruct:mapstruct:1.6.3'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
+    //ADDED - not handled in Java 25
+    implementation 'org.apache.commons:commons-lang3:3.19.0'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    //H2
+    implementation "com.h2database:h2:${h2Version}"
+    
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        //JUnit 4 - not needed
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine' 
+    }
+    testImplementation 'io.projectreactor:reactor-test'
+}
+
+test {
+    useJUnitPlatform()
+
+    //systemProperty 'java.security.manager', 'allow'
+    //jvmArgs '-XX:+EnableDynamicAgentLoading'
+
+    // Solution for Mockito self-attaching warning
+    jvmArgs = [
+        '-javaagent:' + configurations.testRuntimeClasspath.find { it.name.contains("mockito-core") },
+        '--add-opens=java.base/java.lang=ALL-UNNAMED',
+        '--add-opens=java.base/java.util=ALL-UNNAMED'
+    ]
+    
+    testLogging {
+        events "passed", "skipped", "failed"
+        exceptionFormat "full"
+    }
+}
