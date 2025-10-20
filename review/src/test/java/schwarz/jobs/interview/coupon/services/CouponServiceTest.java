@@ -1,7 +1,7 @@
 package schwarz.jobs.interview.coupon.services;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+//import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -110,7 +110,6 @@ public class CouponServiceTest {
         CouponsRequestDTO dto = CouponsRequestDTO.builder()
             .codes(Arrays.asList(COUPON_CODE, COUPON_CODE_2))
             .build();
-
 
         CouponEntity coupon1 = createCouponEntity(COUPON_CODE, DISCOUNT, MIN_BASKET_VALUE);
         CouponEntity coupon2 = createCouponEntity(COUPON_CODE_2, DISCOUNT, MIN_BASKET_VALUE);

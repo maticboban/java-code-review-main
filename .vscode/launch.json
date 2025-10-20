@@ -9,6 +9,16 @@
             "projectName": "review",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-CouponApplication<coupon-review>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "schwarz.jobs.interview.coupon.CouponApplication",
+            "projectName": "coupon-review",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }

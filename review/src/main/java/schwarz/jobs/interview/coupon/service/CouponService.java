@@ -108,7 +108,7 @@ public class CouponService {
                 log.debug("createCoupon(): Tried to create coupon with null value!");
                 throw new RuntimeException("Tried to create coupon with null value!");
             } else {
-                log.debug("createCoupon(): Handling other exception: "+ e.getMessage());
+                log.debug("createCoupon(): Handling other exception: {}",  e.getMessage());
                 throw new RuntimeException("Handling other exception!");
             }
         }
