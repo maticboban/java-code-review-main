@@ -23,15 +23,6 @@ spring:
   main:
       web-application-type: reactive
 
-spring:
-  config:
-    activate:
-      on-profile: docker
-  datasource:
-    url: jdbc:postgresql://db:5432/yourdb
-    username: user
-    password: pass
-
 
 #####################
 ## Spring Doc Swagger - OpenAPI 3
