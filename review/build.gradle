@@ -1,11 +1,23 @@
 plugins {
-    id 'org.springframework.boot' version '3.5.6'
+    id 'org.springframework.boot' version '3.5.7'
     id 'io.spring.dependency-management' version '1.1.7'
     id 'java'
 }
 
 group = 'schwarz.jobs.interview'
 version = '0.0.1-SNAPSHOT'
+
+// docker setup //
+springBoot {
+    buildInfo()
+}
+
+bootJar {
+    layered {
+        enabled = true
+    }
+}
+// docker setup end //
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -84,3 +96,4 @@ test {
         exceptionFormat "full"
     }
 }
+

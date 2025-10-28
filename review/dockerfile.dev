@@ -1,0 +1,15 @@
+FROM eclipse-temurin:21-jdk-jammy
+
+WORKDIR /app
+
+# Copy project files
+COPY . .
+
+# Make gradlew executable
+RUN chmod +x ./gradlew
+
+# Expose port for development
+EXPOSE 8080
+
+# Run in development mode (watches for file changes)
+CMD ["./gradlew", "bootRun"]
